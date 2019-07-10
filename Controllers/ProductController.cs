@@ -47,14 +47,14 @@ namespace ProductCatalog.Controllers
         [HttpPost]
         public ResultViewModel Post([FromBody] EditorProductViewModel model)
         {
-            model.Validate();
-            if (model.Invalid)
-                return new ResultViewModel
-                {
-                    Success = false,
-                    Message = "Não foi possível cadastrar o porduto",
-                    Data = model.Notifications
-                };
+            // model.Validate();
+            // if (model.Invalid)
+            //     return new ResultViewModel
+            //     {
+            //         Success = false,
+            //         Message = "Não foi possível cadastrar o porduto",
+            //         Data = model.Notifications
+            //     };
 
             var product = new Product();
             product.Title = model.Title;
@@ -80,23 +80,23 @@ namespace ProductCatalog.Controllers
 
         [Route("v1/products")]
         [HttpPut]
-        public ResultViewModel Post([FromBody] EditorProductViewModel model)
+        public ResultViewModel Put([FromBody] EditorProductViewModel model)
         {
-            model.Validate();
-            if (model.Invalid)
-                return new ResultViewModel
-                {
-                    Success = false,
-                    Message = "Não foi possível cadastrar o porduto",
-                    Data = model.Notifications
-                };
+            // model.Validate();
+            // if (model.Invalid)
+            //     return new ResultViewModel
+            //     {
+            //         Success = false,
+            //         Message = "Não foi possível cadastrar o porduto",
+            //         Data = model.Notifications
+            //     };
 
             var product = _context.Procuts.Find(model.Id);
             product.CategoryId = model.CategoryId;
-            //product.CreateDate = DateTime.Now; // Nunca altera essa informação
+            //product.CreateDate = DateTime.Now; ==== Nunca altera essa informação
             product.Description = model.Description;
             product.Image = model.Image;
-            product.LastUpdateDate = DateTime.Now; // nunca recebe essa informação
+            product.LastUpdateDate = DateTime.Now; // nunca recebe essa informação, más altera pois e data de
             product.Price = model.Price;
             product.Quantity = model.Quantity;
 
