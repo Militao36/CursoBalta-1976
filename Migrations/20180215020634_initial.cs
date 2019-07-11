@@ -1,6 +1,7 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
+using System;
+using System.Collections.Generic;
 
 namespace ProductCatalog.Migrations
 {
@@ -22,25 +23,25 @@ namespace ProductCatalog.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Procuts",
+                name: "Products",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Title = table.Column<string>(nullable: true),
+                    CategoryId = table.Column<int>(nullable: false),
+                    CreateDate = table.Column<DateTime>(nullable: false),
                     Description = table.Column<string>(nullable: true),
+                    Image = table.Column<string>(nullable: true),
+                    LastUpdateDate = table.Column<DateTime>(nullable: false),
                     Price = table.Column<decimal>(nullable: false),
                     Quantity = table.Column<int>(nullable: false),
-                    Image = table.Column<string>(nullable: true),
-                    CreateDate = table.Column<DateTime>(nullable: false),
-                    LastUpdateDate = table.Column<DateTime>(nullable: false),
-                    CategoryId = table.Column<int>(nullable: false)
+                    Title = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Procuts", x => x.Id);
+                    table.PrimaryKey("PK_Products", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Procuts_Categories_CategoryId",
+                        name: "FK_Products_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "Id",
@@ -48,15 +49,15 @@ namespace ProductCatalog.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Procuts_CategoryId",
-                table: "Procuts",
+                name: "IX_Products_CategoryId",
+                table: "Products",
                 column: "CategoryId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Procuts");
+                name: "Products");
 
             migrationBuilder.DropTable(
                 name: "Categories");

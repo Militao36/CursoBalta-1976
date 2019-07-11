@@ -1,4 +1,4 @@
-namespace ProductCatalog.ViewModels
+namespace ProductCatalog.ViewModels.ProductViewModels
 {
     public class ResultViewModel
     {

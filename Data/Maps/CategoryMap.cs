@@ -5,7 +5,7 @@ using ProductCatalog.Models;
 
 namespace ProductCatalog.Data.Maps
 {
-    public class CategoryMap : IEntityTypeConfiguration<Category>
+    public class CategoryMap: IEntityTypeConfiguration<Category>
     {
         public void Configure(EntityTypeBuilder<Category> builder)
         {

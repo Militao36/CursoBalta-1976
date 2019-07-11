@@ -17,9 +17,9 @@ namespace ProductCatalog.ViewModels.ProductViewModels
         {
             AddNotifications(
                 new Contract()
-                    .HasMaxLen(this.Title, 120, "Title", "O titulo deve conter até 120 caracteres")
-                    .HasMinLen(this.Title, 3, "Title", "O título deve conter pelo menos 3 caracteres")
-                    .IsGreaterThan(this.Price, 0, "Price", "O repço deve ser mais que zero")
+                    .HasMaxLen(Title, 120, "Title", "O título deve conter até 120 caracteres")
+                    .HasMinLen(Title, 3, "Title", "O título deve conter pelo menos 3 caracteres")
+                    .IsGreaterThan(Price, 0, "Price", "O preço deve ser maior que zero")
             );
         }
     }

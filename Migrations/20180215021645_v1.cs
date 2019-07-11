@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System;
+using System.Collections.Generic;
 
 namespace ProductCatalog.Migrations
 {
@@ -7,19 +9,19 @@ namespace ProductCatalog.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Procuts_Categories_CategoryId",
-                table: "Procuts");
+                name: "FK_Products_Categories_CategoryId",
+                table: "Products");
 
             migrationBuilder.DropPrimaryKey(
-                name: "PK_Procuts",
-                table: "Procuts");
+                name: "PK_Products",
+                table: "Products");
 
             migrationBuilder.DropPrimaryKey(
                 name: "PK_Categories",
                 table: "Categories");
 
             migrationBuilder.RenameTable(
-                name: "Procuts",
+                name: "Products",
                 newName: "Product");
 
             migrationBuilder.RenameTable(
@@ -27,7 +29,7 @@ namespace ProductCatalog.Migrations
                 newName: "Category");
 
             migrationBuilder.RenameIndex(
-                name: "IX_Procuts_CategoryId",
+                name: "IX_Products_CategoryId",
                 table: "Product",
                 newName: "IX_Product_CategoryId");
 
@@ -109,7 +111,7 @@ namespace ProductCatalog.Migrations
 
             migrationBuilder.RenameTable(
                 name: "Product",
-                newName: "Procuts");
+                newName: "Products");
 
             migrationBuilder.RenameTable(
                 name: "Category",
@@ -117,12 +119,12 @@ namespace ProductCatalog.Migrations
 
             migrationBuilder.RenameIndex(
                 name: "IX_Product_CategoryId",
-                table: "Procuts",
-                newName: "IX_Procuts_CategoryId");
+                table: "Products",
+                newName: "IX_Products_CategoryId");
 
             migrationBuilder.AlterColumn<string>(
                 name: "Title",
-                table: "Procuts",
+                table: "Products",
                 nullable: true,
                 oldClrType: typeof(string),
                 oldType: "varchar(120)",
@@ -130,14 +132,14 @@ namespace ProductCatalog.Migrations
 
             migrationBuilder.AlterColumn<decimal>(
                 name: "Price",
-                table: "Procuts",
+                table: "Products",
                 nullable: false,
                 oldClrType: typeof(decimal),
                 oldType: "money");
 
             migrationBuilder.AlterColumn<string>(
                 name: "Image",
-                table: "Procuts",
+                table: "Products",
                 nullable: true,
                 oldClrType: typeof(string),
                 oldType: "varchar(1024)",
@@ -145,7 +147,7 @@ namespace ProductCatalog.Migrations
 
             migrationBuilder.AlterColumn<string>(
                 name: "Description",
-                table: "Procuts",
+                table: "Products",
                 nullable: true,
                 oldClrType: typeof(string),
                 oldType: "varchar(1024)",
@@ -160,8 +162,8 @@ namespace ProductCatalog.Migrations
                 oldMaxLength: 120);
 
             migrationBuilder.AddPrimaryKey(
-                name: "PK_Procuts",
-                table: "Procuts",
+                name: "PK_Products",
+                table: "Products",
                 column: "Id");
 
             migrationBuilder.AddPrimaryKey(
@@ -170,8 +172,8 @@ namespace ProductCatalog.Migrations
                 column: "Id");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Procuts_Categories_CategoryId",
-                table: "Procuts",
+                name: "FK_Products_Categories_CategoryId",
+                table: "Products",
                 column: "CategoryId",
                 principalTable: "Categories",
                 principalColumn: "Id",

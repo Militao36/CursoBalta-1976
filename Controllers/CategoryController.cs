@@ -5,20 +5,20 @@ using Microsoft.EntityFrameworkCore;
 using ProductCatalog.Data;
 using ProductCatalog.Models;
 
-
 namespace ProductCatalog.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly StoreDataContext _context; // qnd e privado e uma boa pratica colocar _context;
+        private readonly StoreDataContext _context;
 
-        public CategoryController(StoreDataContext contex)
+        public CategoryController(StoreDataContext context)
         {
-            _context = contex;
+            _context = context;
         }
 
         [Route("v1/categories")]
         [HttpGet]
+        [ResponseCache(Duration = 3600)]
         public IEnumerable<Category> Get()
         {
             return _context.Categories.AsNoTracking().ToList();
@@ -28,16 +28,16 @@ namespace ProductCatalog.Controllers
         [HttpGet]
         public Category Get(int id)
         {
-            // Find ainda não suporta AsNoTracking
-            // return _context.Categories.Find(id);
+            // Find() ainda não suporta AsNoTracking
             return _context.Categories.AsNoTracking().Where(x => x.Id == id).FirstOrDefault();
         }
 
         [Route("v1/categories/{id}/products")]
         [HttpGet]
+        [ResponseCache(Duration = 30)] 
         public IEnumerable<Product> GetProducts(int id)
         {
-            return _context.Procuts.AsNoTracking().Where(x => x.CategoryId == id).ToList();
+            return _context.Products.AsNoTracking().Where(x => x.CategoryId == id).ToList();
         }
 
         [Route("v1/categories")]
@@ -66,10 +66,8 @@ namespace ProductCatalog.Controllers
         {
             _context.Categories.Remove(category);
             _context.SaveChanges();
+
             return category;
         }
     }
 }
-
-//Observações
-// AsNoTracking ele traz informações extras eu uso o (AsNoTracking) para não criar essas informações adicionais

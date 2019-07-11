@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using ProductCatalog.Data;
+using ProductCatalog.Repositories;
 
 namespace ProductCatalog
 {
@@ -11,16 +12,19 @@ namespace ProductCatalog
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddScoped<StoreDataContext, StoreDataContext>(); // ele ver se tem na memoria antes de criar
-            // services.AddTransient<StoreDataContext, StoreDataContext>();// a cada request ele cria uma nova request
+            services.AddResponseCompression();
+
+            services.AddScoped<StoreDataContext, StoreDataContext>();
+            services.AddTransient<ProductRepository, ProductRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
-                app.UseDeveloperExceptionPage(); // vai printar uma pagina de erros detalhadas apenas me produção
+                app.UseDeveloperExceptionPage();
 
             app.UseMvc();
+            app.UseResponseCompression();
         }
     }
 }
